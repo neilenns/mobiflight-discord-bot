@@ -1,10 +1,11 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("lock")
-    .setDescription("Locks a thread"),
+    .setDescription("Locks a thread")
+    .setDefaultMemberPermissions(PermissionFlagsBits.MANAGE_THREADS),
   async execute(interaction) {
     const thread = interaction.channel;
 
