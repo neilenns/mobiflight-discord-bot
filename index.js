@@ -10,7 +10,12 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 client.cooldowns = new Collection();
 
-loadCommands();
+if (process.env.ENABLE_COMMANDS === "true") {
+  loadCommands();
+} else {
+  console.log(`Commands disabled, skipping creating them.`);
+}
+
 loadEvents();
 
 // Log in to Discord with your client's token
