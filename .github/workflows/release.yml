@@ -26,6 +26,6 @@ jobs:
           context: .
           file: ./Docker/Dockerfile
           push: true
-          cache-from: type=registry,ref=neilenns/mobiflight-bot:latest
+          cache-from: type=registry,ref=neilenns/mobiflight-discord-bot:latest
           cache-to: type=inline
-          tags: neilenns/mobiflight-bot:latest
+          tags: neilenns/mobiflight-discord-bot:latest
