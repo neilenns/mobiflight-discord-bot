@@ -1,0 +1,27 @@
+{
+  "name": "mobiflight-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord bot to assist with moderation of the Mobiflight discord",
+  "main": "index.js",
+  "scripts": {
+    "run": "node .",
+    "deploy-commands": "node deploy-commands.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neilenns/mobiflight-discord-bot.git"
+  },
+  "author": "Neil Enns",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neilenns/mobiflight-discord-bot/issues"
+  },
+  "homepage": "https://github.com/neilenns/mobiflight-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  }
+}
