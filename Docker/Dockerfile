@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 COPY ./package-lock.json ./
-COPY ./Docker/dockerfile-entrypoint.sh /usr/local/bin/dockerfile-entrypoint.sh
+COPY ./Docker/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 # Make the entrypoint script executable
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
@@ -14,4 +14,4 @@ RUN npm ci --only=production
 
 COPY ./src ./src
 
-ENTRYPOINT [ "/usr/local/bin/dockerfile-entrypoint.sh" ]
+ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
