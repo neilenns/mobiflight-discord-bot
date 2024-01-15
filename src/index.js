@@ -10,17 +10,6 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 client.commands = new Collection();
 client.cooldowns = new Collection();
 
-if (process.env.ENABLE_COMMANDS === "true") {
-  loadCommands();
-} else {
-  console.log(`Commands disabled, skipping creating them.`);
-}
-
-loadEvents();
-
-// Log in to Discord with your client's token
-client.login(process.env.DISCORD_TOKEN);
-
 function loadEvents() {
   const eventsPath = path.join(__dirname, "events");
   const eventFiles = fs
@@ -63,3 +52,14 @@ function loadCommands() {
     }
   }
 }
+
+if (process.env.ENABLE_COMMANDS === "true") {
+  loadCommands();
+} else {
+  console.log(`Commands disabled, skipping creating them.`);
+}
+
+loadEvents();
+
+// Log in to Discord with your client's token
+client.login(process.env.DISCORD_TOKEN);
