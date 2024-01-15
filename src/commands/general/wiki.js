@@ -11,12 +11,11 @@ const fs = require("fs");
 const debug = require("debug")("wikiCommand");
 
 let selectMenu;
+let menuItems;
 
 function loadMenuItems() {
   debug(`Loading menu items from ${process.env.WIKI_ITEMS_PATH}`);
-  const menuItems = JSON.parse(
-    fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8")
-  );
+  menuItems = JSON.parse(fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8"));
 
   // Build the menu
   selectMenu = new StringSelectMenuBuilder()
@@ -33,20 +32,21 @@ function loadMenuItems() {
   });
 }
 
-// Start watching for file changes
-try {
-  chokidar
-    .watch(process.env.WIKI_ITEMS_PATH, {
-      awaitWriteFinish: true,
-    })
-    .on("change", loadMenuItems);
-  debug(`Watching for changes in ${process.env.WIKI_ITEMS_PATH}`);
-} catch (e) {
-  debug(`Unable to watch for changes to ${process.env.WIKI_ITEMS_PATH}: ${e}`);
+function watchForMenuChanges() {
+  // Start watching for file changes
+  try {
+    chokidar
+      .watch(process.env.WIKI_ITEMS_PATH, {
+        awaitWriteFinish: true,
+      })
+      .on("change", loadMenuItems);
+    debug(`Watching for changes in ${process.env.WIKI_ITEMS_PATH}`);
+  } catch (e) {
+    debug(
+      `Unable to watch for changes to ${process.env.WIKI_ITEMS_PATH}: ${e}`
+    );
+  }
 }
-
-// Initialize the menu
-loadMenuItems();
 
 // Prompts the user to pick a wiki topic from the dropdown.
 // This function will throw an error if anything goes wrong.
@@ -80,6 +80,10 @@ async function replyOrEditReply(interaction, options) {
 }
 
 module.exports = {
+  init: () => {
+    loadMenuItems();
+    watchForMenuChanges();
+  },
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("wiki")

@@ -41,6 +41,13 @@ function loadCommands() {
       const filePath = path.join(commandsPath, file);
       const command = require(filePath);
       console.log(`Loading command: ${filePath}`);
+
+      // Initialize the command if it has an initializer
+      if ("init" in command) {
+        console.log(`Initializing ${filePath}`);
+        command.init();
+      }
+
       // Set a new item in the Collection with the key as the command name and the value as the exported module
       if ("data" in command && "execute" in command) {
         client.commands.set(command.data.name, command);
