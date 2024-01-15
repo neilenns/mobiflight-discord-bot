@@ -6,32 +6,52 @@ const {
   hyperlink,
   hideLinkEmbed,
 } = require("discord.js");
-
+const chokidar = require("chokidar");
 const fs = require("fs");
-const path = require("path");
+const debug = require("debug")("wikiCommand");
 
-const menuItemsPath = process.env.WIKI_ITEMS_PATH;
-const menuItems = JSON.parse(fs.readFileSync(menuItemsPath, "utf8"));
+let selectMenu;
 
-// Build the menu
-const select = new StringSelectMenuBuilder()
-  .setCustomId("wiki-selector")
-  .setPlaceholder("Select a wiki topic");
-
-// Add options from the JSON file
-menuItems.forEach((item) => {
-  select.addOptions(
-    new StringSelectMenuOptionBuilder()
-      .setLabel(item.label)
-      .setDescription(item.description)
-      .setValue(item.value)
+function loadMenuItems() {
+  debug(`Loading menu items from ${process.env.WIKI_ITEMS_PATH}`);
+  const menuItems = JSON.parse(
+    fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8")
   );
-});
+
+  // Build the menu
+  selectMenu = new StringSelectMenuBuilder()
+    .setCustomId("wiki-selector")
+    .setPlaceholder("Select a wiki topic");
+
+  menuItems.forEach((item) => {
+    selectMenu.addOptions(
+      new StringSelectMenuOptionBuilder()
+        .setLabel(item.label)
+        .setDescription(item.description)
+        .setValue(item.value)
+    );
+  });
+}
+
+// Start watching for file changes
+try {
+  chokidar
+    .watch(process.env.WIKI_ITEMS_PATH, {
+      awaitWriteFinish: true,
+    })
+    .on("change", loadMenuItems);
+  debug(`Watching for changes in ${process.env.WIKI_ITEMS_PATH}`);
+} catch (e) {
+  debug(`Unable to watch for changes to ${process.env.WIKI_ITEMS_PATH}: ${e}`);
+}
+
+// Initialize the menu
+loadMenuItems();
 
 // Prompts the user to pick a wiki topic from the dropdown.
 // This function will throw an error if anything goes wrong.
 async function promptForTopic(interaction) {
-  const row = new ActionRowBuilder().addComponents(select);
+  const row = new ActionRowBuilder().addComponents(selectMenu);
 
   // Send the menu
   const menu = await interaction.reply({
@@ -102,7 +122,7 @@ module.exports = {
         content: `Check out this wiki page for information: ${link}`,
       });
     } catch (error) {
-      console.log(`Unable to send wiki link: ${error}`);
+      debug(`Unable to send wiki link: ${error}`);
       await replyOrEditReply(interaction, {
         content: `Unable to send wiki link: ${error}`,
         components: [],
