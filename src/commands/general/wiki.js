@@ -10,7 +10,7 @@ const {
 const fs = require("fs");
 const path = require("path");
 
-const menuItemsPath = path.join(__dirname, "../../menuItems.json");
+const menuItemsPath = process.env.WIKI_ITEMS_PATH;
 const menuItems = JSON.parse(fs.readFileSync(menuItemsPath, "utf8"));
 
 // Build the menu

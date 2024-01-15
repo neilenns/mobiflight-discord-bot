@@ -1,0 +1,17 @@
+version: '3.8'
+
+name: mobiflight-discord
+
+services:
+  bot:
+    image: ghcr.io/neilenns/mobiflight-discord-bot:latest
+    restart: always      
+    environment:
+     - DISCORD_TOKEN=x # Application token
+     - DISCORD_CLIENT_ID=x # Application ID
+     - DISCORD_GUILD_ID=x # Server ID
+     - SOLVED_TAG_NAME=Solved
+     - ENABLE_COMMANDS=true
+     - WIKI_ITEMS_PATH=/config/menuItems.json
+    volumes:
+     - ./config:/config
