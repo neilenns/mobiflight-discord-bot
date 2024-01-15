@@ -42,7 +42,7 @@ module.exports = {
 
       if (wasSolved(oldThread, newThread, tagId)) {
         await newThread.send(
-          `Since this is resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>.`
+          `Since this is resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!`
         );
         await newThread.setLocked(true);
       } else if (wasUnSolved(oldThread, newThread, tagId)) {
