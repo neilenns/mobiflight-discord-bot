@@ -1,4 +1,4 @@
 #!/bin/sh
 
-node run deploy-commands
-node run start
+npm run deploy-commands
+npm run start
