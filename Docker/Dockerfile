@@ -14,4 +14,9 @@ RUN npm ci --only=production
 
 COPY ./src ./src
 
+# Enable polling for watching files by default since it appears that's
+# the only way to have file detection work in a Docker container.
+# This can always be set to false in docker-compose.yml later if necessary.
+ENV CHOKIDAR_USEPOLLING=true
+
 ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
