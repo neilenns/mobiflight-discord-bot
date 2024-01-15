@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Honeycomb Bravo",
+    "description": "Using the selector knob on a Honeycomb Bravo",
+    "value": "honeycombbravo",
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo"
+  },
+  {
+    "label": "Multiplexers",
+    "description": "Beginner's guide to input multiplexers",
+    "value": "multiplexers",
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers"
+  },
+  {
+    "label": "Input shifters",
+    "description": "Adding lots of buttons with an input shift register",
+    "value": "inputshifters",
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register"
+  },
+  {
+    "label": "Output shifters",
+    "description": "Controlling LEDs with an output shift register",
+    "value": "outputshifters",
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register"
+  }
+]
