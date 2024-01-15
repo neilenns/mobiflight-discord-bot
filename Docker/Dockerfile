@@ -4,10 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 COPY ./package-lock.json ./
+COPY ./Docker/dockerfile-entrypoint.sh /usr/local/bin/dockerfile-entrypoint.sh
 
 # Install only production dependencies
 RUN npm ci --only=production
 
 COPY ./src ./src
 
-CMD [ "node", "./src/index.js" ]
+ENTRYPOINT [ "/usr/local/bin/dockerfile-entrypoint.sh" ]
