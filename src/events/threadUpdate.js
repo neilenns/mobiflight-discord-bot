@@ -29,10 +29,10 @@ module.exports = {
   name: Events.ThreadUpdate,
   async execute(oldThread, newThread) {
     try {
-      // if (!newThread.manageable) {
-      //   console.log(`No permission to manage thread "${newThread.name}"`);
-      //   return;
-      // }
+      if (!newThread.manageable) {
+        console.log(`No permission to manage thread "${newThread.name}"`);
+        return;
+      }
 
       // Get the tagId for "Solved" from the parent channel
       const tagId = findTagIdByName(
