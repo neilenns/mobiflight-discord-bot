@@ -12,6 +12,7 @@ services:
      - DISCORD_GUILD_ID=x # Server ID
      - SOLVED_TAG_NAME=Solved
      - ENABLE_COMMANDS=true
-     - WIKI_ITEMS_PATH=/config/menuItems.json
+     - WIKI_ITEMS_PATH=/config/wikiMenuItems.json
+     - YT_ITEMS_PATH=/config/ytMenuItems.json
     volumes:
      - ./config:/config
