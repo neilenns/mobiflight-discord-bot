@@ -45,8 +45,10 @@ module.exports = {
           `Since this is resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!`
         );
         await newThread.setLocked(true);
+        console.log(`Locked thread "${newThread.name}"`);
       } else if (wasUnSolved(oldThread, newThread, tagId)) {
         await newThread.setLocked(false);
+        console.log(`Unlocked thread "${newThread.name}"`);
 
         // This will only have a value if the cache contains the last message.
         // for the channel.
