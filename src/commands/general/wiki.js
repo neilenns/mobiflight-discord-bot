@@ -6,6 +6,7 @@ const {
   hyperlink,
   hideLinkEmbed,
 } = require("discord.js");
+const { replyOrEditReply } = require("../../utilities");
 const chokidar = require("chokidar");
 const fs = require("fs");
 const debug = require("debug")("wikiCommand");
@@ -69,14 +70,6 @@ async function promptForTopic(interaction) {
   });
 
   return confirmation.values[0];
-}
-
-async function replyOrEditReply(interaction, options) {
-  if (interaction.replied) {
-    await interaction.editReply(options);
-  } else {
-    await interaction.reply(options);
-  }
 }
 
 module.exports = {
