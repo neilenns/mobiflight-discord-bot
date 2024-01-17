@@ -25,6 +25,18 @@ function findTagIdByName(channel, tagName) {
   return matchingTags.length > 0 ? matchingTags[0].id : 0;
 }
 
+// Returns true if a thread was started farther back in time than
+// the number of days specified by the OLD_THREAD_AGE_IN_DAYS environment
+// variable.
+function isOldThread(thread) {
+  const ageCutoffInMs =
+    parseInt(process.env.OLD_THREAD_AGE_IN_DAYS) * 24 * 60 * 60 * 1000;
+
+  const threadAgeInMs = Date.now() - thread.createdTimestamp;
+
+  return threadAgeInMs > ageCutoffInMs;
+}
+
 module.exports = {
   name: Events.ThreadUpdate,
   async execute(oldThread, newThread) {
@@ -41,9 +53,12 @@ module.exports = {
       );
 
       if (wasSolved(oldThread, newThread, tagId)) {
-        await newThread.send(
-          `Since this is resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!`
-        );
+        if (!isOldThread(newThread)) {
+          await newThread.send(
+            `Since this is resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!`
+          );
+        }
+
         await newThread.setLocked(true);
         console.log(`Locked thread "${newThread.name}"`);
       } else if (wasUnSolved(oldThread, newThread, tagId)) {
