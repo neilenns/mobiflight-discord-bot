@@ -22,5 +22,11 @@
     "description": "Controlling LEDs with an output shift register",
     "value": "outputshifters",
     "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register"
+  },
+  {
+    "label": "Logs",
+    "description": "Providing logs from MobiFlight",
+    "value": "logs",
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight"
   }
 ]
