@@ -1,4 +1,6 @@
 const { Events } = require("discord.js");
+const mainLogger = require("../logger");
+const logger = mainLogger.child({ service: "threadUpdate" });
 
 // Returns true if the solve tag was added to newThread.
 function wasSolved(oldThread, newThread, tagId) {
@@ -42,7 +44,9 @@ module.exports = {
   async execute(oldThread, newThread) {
     try {
       if (!newThread.manageable) {
-        console.log(`No permission to manage thread "${newThread.name}"`);
+        logger.error(`No permission to manage thread "${newThread.name}"`, {
+          thread: newThread.name,
+        });
         return;
       }
 
@@ -60,10 +64,14 @@ module.exports = {
         }
 
         await newThread.setLocked(true);
-        console.log(`Locked thread "${newThread.name}"`);
+        logger.debug(`Locked thread "${newThread.name}"`, {
+          thread: newThread.name,
+        });
       } else if (wasUnSolved(oldThread, newThread, tagId)) {
         await newThread.setLocked(false);
-        console.log(`Unlocked thread "${newThread.name}"`);
+        logger.debug(`Unlocked thread "${newThread.name}"`, {
+          thread: newThread.name,
+        });
 
         // This will only have a value if the cache contains the last message.
         // for the channel.
@@ -73,7 +81,7 @@ module.exports = {
         }
       }
     } catch (error) {
-      console.log(`Error setting thread lock state: ${error.message}`);
+      logger.error(`Error setting thread lock state: ${error.message}`);
     }
   },
 };
