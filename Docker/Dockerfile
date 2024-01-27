@@ -19,4 +19,9 @@ COPY ./src ./src
 # This can always be set to false in docker-compose.yml later if necessary.
 ENV CHOKIDAR_USEPOLLING=true
 
+# Pull the version from the github build environment
+ARG VERSION
+ENV VERSION=${VERSION:-dev}
+RUN echo $VERSION
+
 ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
