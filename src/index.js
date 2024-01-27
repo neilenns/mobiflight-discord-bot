@@ -5,7 +5,10 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
 
-console.log(`Starting up version ${process.env.VERSION ?? "dev"}`);
+const mainLogger = require("./logger");
+const logger = mainLogger.child({ service: "index" });
+
+logger.info(`Starting up version ${process.env.VERSION ?? "dev"}`);
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -20,7 +23,7 @@ function loadEvents() {
 
   for (const file of eventFiles) {
     const filePath = path.join(eventsPath, file);
-    console.log(`Loading event: ${filePath}`);
+    logger.debug(`Loading event: ${filePath}`, { file: filePath });
     const event = require(filePath);
     if (event.once) {
       client.once(event.name, (...args) => event.execute(...args));
@@ -42,11 +45,11 @@ function loadCommands() {
     for (const file of commandFiles) {
       const filePath = path.join(commandsPath, file);
       const command = require(filePath);
-      console.log(`Loading command: ${filePath}`);
+      logger.debug(`Loading command: ${filePath}`, { file: filePath });
 
       // Initialize the command if it has an initializer
       if ("init" in command) {
-        console.log(`Initializing ${filePath}`);
+        logger.debug(`Initializing ${filePath}`, { file: filePath });
         command.init();
       }
 
@@ -54,8 +57,9 @@ function loadCommands() {
       if ("data" in command && "execute" in command) {
         client.commands.set(command.data.name, command);
       } else {
-        console.log(
-          `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+        logger.warn(
+          `The command at ${filePath} is missing a required "data" or "execute" property.`,
+          { file: filePath }
         );
       }
     }
@@ -65,7 +69,7 @@ function loadCommands() {
 if (process.env.ENABLE_COMMANDS === "true") {
   loadCommands();
 } else {
-  console.log(`Commands disabled, skipping creating them.`);
+  logger.info(`Commands disabled, skipping creating them.`);
 }
 
 loadEvents();
