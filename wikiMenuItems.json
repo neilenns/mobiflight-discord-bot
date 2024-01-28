@@ -33,5 +33,12 @@
     "value": "logs",
     "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight",
     "preamble": "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:"
+  },
+  {
+    "label": "7 Segments",
+    "description": "Setting up 7 segment LED modules with SimConnect Events",
+    "value": "7segments",
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events",
+    "preamble": "Check out this wiki page for information on using 7-segment LED modules with MobiFlight:"
   }
 ]
