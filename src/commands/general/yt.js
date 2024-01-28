@@ -105,7 +105,11 @@ module.exports = {
         });
         return;
       }
+
       const link = hyperlink(selectedItem.description, selectedItem.href);
+      const preamble =
+        selectedItem.preamble ??
+        "Check out the following video for more information:";
 
       await replyOrEditReply(interaction, {
         content: `Link sent!`,
@@ -114,7 +118,7 @@ module.exports = {
       });
 
       await interaction.channel.send({
-        content: `Check out this YouTube video for information: ${link}`,
+        content: `${preamble} ${link}`,
       });
     } catch (error) {
       debug(`Unable to send YouTube link: ${error}`);
