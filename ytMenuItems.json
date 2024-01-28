@@ -3,6 +3,7 @@
     "label": "Getting started 2023",
     "description": "Getting Started 2023 - MobiFlight Tutorial",
     "value": "gettingstarted",
-    "href": "https://www.youtube.com/watch?v=pS8KGfYRNrY"
+    "href": "https://www.youtube.com/watch?v=pS8KGfYRNrY",
+    "preamble": "Check out this YouTube video for a good introduction on getting started with MobiFlight:"
   }
 ]

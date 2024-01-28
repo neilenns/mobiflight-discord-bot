@@ -107,7 +107,11 @@ module.exports = {
         });
         return;
       }
+
       const link = hyperlink(selectedItem.description, selectedItem.href);
+      const preamble =
+        selectedItem.preamble ??
+        "Check out the following link for more information:";
 
       await replyOrEditReply(interaction, {
         content: `Link sent!`,
@@ -116,7 +120,7 @@ module.exports = {
       });
 
       await interaction.channel.send({
-        content: `Check out this wiki page for information: ${link}`,
+        content: `${preamble} ${link}`,
       });
     } catch (error) {
       debug(`Unable to send wiki link: ${error}`);

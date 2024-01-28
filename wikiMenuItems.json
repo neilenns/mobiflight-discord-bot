@@ -3,30 +3,35 @@
     "label": "Honeycomb Bravo",
     "description": "Using the selector knob on a Honeycomb Bravo",
     "value": "honeycombbravo",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo"
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo",
+    "preamble": "Check out this wiki page for information on using the selector knob with the Honeycomb Bravo:"
   },
   {
     "label": "Multiplexers",
     "description": "Beginner's guide to input multiplexers",
     "value": "multiplexers",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers"
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers",
+    "preamble": "Check out this wiki page for information on using multiplexers with MobiFlight:"
   },
   {
     "label": "Input shifters",
     "description": "Adding lots of buttons with an input shift register",
     "value": "inputshifters",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register"
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register",
+    "preamble": "Check out this wiki page for information on using input shifters with MobiFlight:"
   },
   {
     "label": "Output shifters",
     "description": "Controlling LEDs with an output shift register",
     "value": "outputshifters",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register"
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register",
+    "preamble": "Check out this wiki page for information on using output shifters with MobiFlight:"
   },
   {
     "label": "Logs",
     "description": "Providing logs from MobiFlight",
     "value": "logs",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight"
+    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight",
+    "preamble": "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:"
   }
 ]
