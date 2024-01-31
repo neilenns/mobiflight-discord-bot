@@ -20,11 +20,16 @@ function wasUnSolved(oldThread, newThread, tagId) {
 
 // Returns the tagId for the tag named tagName in the given channel
 function findTagIdByName(channel, tagName) {
+  // Sometimes there are no available tags
+  if (!channel.availableTags) {
+    return undefined;
+  }
+
   const matchingTags = channel.availableTags.filter((item) => {
     return item.name.toLowerCase() == tagName.toLowerCase();
   });
 
-  return matchingTags.length > 0 ? matchingTags[0].id : 0;
+  return matchingTags.length > 0 ? matchingTags[0].id : undefined;
 }
 
 // Returns true if a thread was started farther back in time than
@@ -56,10 +61,34 @@ module.exports = {
         process.env.SOLVED_TAG_NAME
       );
 
+      if (tagId === undefined) {
+        logger.warn(
+          `Unable to lock thread "${newThread.name}": couldn't find tag name ${process.env.SOLVED_TAG_NAME} in channel #${newThread.parent.name}.`,
+          {
+            thread: newThread.name,
+            solvedTag: process.env.SOLVED_TAG_NAME,
+            channe: newThread.parent.name,
+          }
+        );
+        return;
+      }
+
       if (wasSolved(oldThread, newThread, tagId)) {
         if (!isOldThread(newThread)) {
           await newThread.send(
             `Since this is resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!`
+          );
+        } else {
+          const createdDate = new Date(
+            newThread.createdTimestamp
+          ).toUTCString();
+          logger.info(
+            `Not sending closed message to "${newThread.name}" since it was created ${createdDate} which is more than ${process.env.OLD_THREAD_AGE_IN_DAYS} days ago.`,
+            {
+              thread: newThread.name,
+              createdDate,
+              oldThreadAge: process.env.OLD_THREAD_AGE_IN_DAYS,
+            }
           );
         }
 
@@ -78,6 +107,9 @@ module.exports = {
         const lastMessage = newThread.lastMessage;
         if (lastMessage?.author.bot) {
           await newThread.lastMessage.delete();
+          logger.debug(
+            `Deleted the last message from the thread since it came from the bot`
+          );
         }
       }
     } catch (error) {
