@@ -1,4 +1,5 @@
 const winston = require("winston");
+const DiscordTransport = require("winston-discord-transport").default;
 const { Logtail } = require("@logtail/node");
 const { LogtailTransport } = require("@logtail/winston");
 
@@ -37,13 +38,25 @@ const Logger = winston.createLogger({
   transports: [new winston.transports.Console({ format: consoleFormat })],
 });
 
+// If Discord logging is configured add it as a transport
+if (process.env.BOT_LOG_WEBHOOK) {
+  Logger.debug(`Enabling logging to Discord`, { service: "logging" });
+  Logger.add(
+    new DiscordTransport({
+      webhook: process.env.BOT_LOG_WEBHOOK,
+    })
+  );
+} else {
+  Logger.warn(`Logging to Discord not configured`, { service: "logging" });
+}
+
 // If logtail was configured add it as a transport
 if (process.env.LOGTAIL_TOKEN) {
   Logger.debug(`Enabling logging to Logtail`, { service: "logging" });
   logtail = new Logtail(process.env.LOGTAIL_TOKEN);
   Logger.add(new LogtailTransport(logtail, { format: winston.format.json() }));
 } else {
-  Logger.warn(`Logtail logging not configured`, { service: "logging" });
+  Logger.warn(`Logging to Logtail not configured`, { service: "logging" });
 }
 
 module.exports = Logger;
