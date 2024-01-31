@@ -1,4 +1,5 @@
 const winston = require("winston");
+const DiscordTransport = require("winston-discord-transport").default;
 const { Logtail } = require("@logtail/node");
 const { LogtailTransport } = require("@logtail/winston");
 
@@ -36,6 +37,15 @@ const Logger = winston.createLogger({
   level: level(),
   transports: [new winston.transports.Console({ format: consoleFormat })],
 });
+
+// If Discord logging is configured add it as a transport
+if (process.env.BOT_LOG_WEBHOOK) {
+  Logger.add(
+    new DiscordTransport({
+      webhook: process.env.BOT_LOG_WEBHOOK,
+    })
+  );
+}
 
 // If logtail was configured add it as a transport
 if (process.env.LOGTAIL_TOKEN) {
