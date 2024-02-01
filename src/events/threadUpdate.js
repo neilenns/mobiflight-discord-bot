@@ -62,7 +62,9 @@ module.exports = {
       );
 
       if (tagId === undefined) {
-        logger.warn(
+        // This is debug instead of warn because it's quite common to have no tags, it means the bot was triggered by a thread
+        // change in a channel that doesn't have the tags enabled on it.
+        logger.debug(
           `Unable to lock thread "${newThread.name}": couldn't find tag name ${process.env.SOLVED_TAG_NAME} in channel #${newThread.parent.name}.`,
           {
             thread: newThread.name,
