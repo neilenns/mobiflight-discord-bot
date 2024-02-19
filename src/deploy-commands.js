@@ -10,29 +10,33 @@ const logger = mainLogger.child({ service: "deployCommands" });
 
 const commands = [];
 function loadCommands() {
-  // Grab all the command folders from the commands directory you created earlier
-  const foldersPath = path.join(__dirname, "commands");
-  const commandFolders = fs.readdirSync(foldersPath);
+  try {
+    // Grab all the command folders from the commands directory you created earlier
+    const foldersPath = path.join(__dirname, "commands");
+    const commandFolders = fs.readdirSync(foldersPath);
 
-  for (const folder of commandFolders) {
-    // Grab all the command files from the commands directory you created earlier
-    const commandsPath = path.join(foldersPath, folder);
-    const commandFiles = fs
-      .readdirSync(commandsPath)
-      .filter((file) => file.endsWith(".js"));
-    // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
-    for (const file of commandFiles) {
-      const filePath = path.join(commandsPath, file);
-      const command = require(filePath);
-      if ("data" in command && "execute" in command) {
-        commands.push(command.data.toJSON());
-      } else {
-        logger.warn(
-          `The command at ${filePath} is missing a required "data" or "execute" property.`,
-          { file: filePath }
-        );
+    for (const folder of commandFolders) {
+      // Grab all the command files from the commands directory you created earlier
+      const commandsPath = path.join(foldersPath, folder);
+      const commandFiles = fs
+        .readdirSync(commandsPath)
+        .filter((file) => file.endsWith(".js"));
+      // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
+      for (const file of commandFiles) {
+        const filePath = path.join(commandsPath, file);
+        const command = require(filePath);
+        if ("data" in command && "execute" in command) {
+          commands.push(command.data.toJSON());
+        } else {
+          logger.warn(
+            `The command at ${filePath} is missing a required "data" or "execute" property.`,
+            { file: filePath }
+          );
+        }
       }
     }
+  } catch (err) {
+    logger.error(`Failed to load commands: ${err.message}`, err);
   }
 }
 
@@ -50,7 +54,7 @@ const rest = new REST().setToken(process.env.DISCORD_TOKEN);
 // and deploy your commands!
 (async () => {
   try {
-    logger.info(
+    logger.debug(
       `Started refreshing ${commands.length} application (/) commands.`
     );
 
@@ -63,7 +67,7 @@ const rest = new REST().setToken(process.env.DISCORD_TOKEN);
       { body: commands }
     );
 
-    logger.info(
+    logger.debug(
       `Successfully reloaded ${data.length} application (/) commands.`
     );
   } catch (error) {
