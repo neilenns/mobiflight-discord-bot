@@ -3,6 +3,7 @@ const {
   StringSelectMenuBuilder,
   StringSelectMenuOptionBuilder,
   SlashCommandBuilder,
+  DiscordjsError,
   hyperlink,
   hideLinkEmbed,
 } = require("discord.js");
@@ -134,12 +135,25 @@ module.exports = {
         content: `${preamble} ${link}`,
       });
     } catch (error) {
-      logger.error(`Unable to send wiki link: ${error}`);
-      await replyOrEditReply(interaction, {
-        content: `Unable to send wiki link: ${error}`,
-        components: [],
-        ephemeral: true,
-      });
+      // Errors from the user not responding to the dropdown in time don't log,
+      // they're just too noisy.
+      if (
+        error instanceof DiscordjsError &&
+        error.code === "InteractionCollectorError"
+      ) {
+        await replyOrEditReply(interaction, {
+          content: `No response received, canceling sending the wiki link`,
+          components: [],
+          ephemeral: true,
+        });
+      } else {
+        logger.error(`Unable to send wiki link: ${error}`, error);
+        await replyOrEditReply(interaction, {
+          content: `Unable to send wiki link: ${error}`,
+          components: [],
+          ephemeral: true,
+        });
+      }
     }
   },
 };
