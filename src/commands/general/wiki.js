@@ -9,28 +9,39 @@ const {
 const { replyOrEditReply } = require("../../utilities");
 const chokidar = require("chokidar");
 const fs = require("fs");
-const debug = require("debug")("wikiCommand");
+
+const mainLogger = require("../../logger");
+const logger = mainLogger.child({ service: "wiki" });
 
 let selectMenu;
 let menuItems;
 
 function loadMenuItems() {
-  debug(`Loading menu items from ${process.env.WIKI_ITEMS_PATH}`);
-  menuItems = JSON.parse(fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8"));
-
-  // Build the menu
-  selectMenu = new StringSelectMenuBuilder()
-    .setCustomId("wiki-selector")
-    .setPlaceholder("Select a wiki topic");
-
-  menuItems.forEach((item) => {
-    selectMenu.addOptions(
-      new StringSelectMenuOptionBuilder()
-        .setLabel(item.label)
-        .setDescription(item.description)
-        .setValue(item.value)
+  logger.debug(`Loading menu items from ${process.env.WIKI_ITEMS_PATH}`);
+  try {
+    menuItems = JSON.parse(
+      fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8")
     );
-  });
+
+    // Build the menu
+    selectMenu = new StringSelectMenuBuilder()
+      .setCustomId("wiki-selector")
+      .setPlaceholder("Select a wiki topic");
+
+    menuItems.forEach((item) => {
+      selectMenu.addOptions(
+        new StringSelectMenuOptionBuilder()
+          .setLabel(item.label)
+          .setDescription(item.description)
+          .setValue(item.value)
+      );
+    });
+  } catch (err) {
+    logger.error(
+      `Failed to load wiki menu items from ${process.env.WIKI_ITEMS_PATH}: ${err.message}`,
+      err
+    );
+  }
 }
 
 function watchForMenuChanges() {
@@ -41,9 +52,9 @@ function watchForMenuChanges() {
         awaitWriteFinish: true,
       })
       .on("change", loadMenuItems);
-    debug(`Watching for changes in ${process.env.WIKI_ITEMS_PATH}`);
+    logger.debug(`Watching for changes in ${process.env.WIKI_ITEMS_PATH}`);
   } catch (e) {
-    debug(
+    logger.error(
       `Unable to watch for changes to ${process.env.WIKI_ITEMS_PATH}: ${e}`
     );
   }
@@ -123,7 +134,7 @@ module.exports = {
         content: `${preamble} ${link}`,
       });
     } catch (error) {
-      debug(`Unable to send wiki link: ${error}`);
+      logger.error(`Unable to send wiki link: ${error}`);
       await replyOrEditReply(interaction, {
         content: `Unable to send wiki link: ${error}`,
         components: [],

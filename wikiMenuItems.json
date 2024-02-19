@@ -40,5 +40,19 @@
     "value": "7segments",
     "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events",
     "preamble": "Check out this wiki page for information on using 7-segment LED modules with MobiFlight:"
+  },
+  {
+    "label": "CH340",
+    "description": "Arduino Nano and Mega with CH340 chips connection issues",
+    "value": "ch340",
+    "href": "https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/",
+    "preamble": "It sounds like your Arduino uses a counterfeit CH340 chip. You can find more information about this problem and how to fix it by visiting this blog post:"
+  },
+  {
+    "label": "Getting started 2023",
+    "description": "Getting Started 2023 - MobiFlight Tutorial",
+    "value": "gettingstarted",
+    "href": "https://www.youtube.com/watch?v=pS8KGfYRNrY",
+    "preamble": "Check out this YouTube video for a good introduction on getting started with MobiFlight:"
   }
 ]
