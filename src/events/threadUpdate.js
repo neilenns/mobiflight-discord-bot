@@ -49,9 +49,14 @@ module.exports = {
   async execute(oldThread, newThread) {
     try {
       if (!newThread.manageable) {
-        logger.error(`No permission to manage thread "${newThread.name}"`, {
-          thread: newThread.name,
-        });
+        logger.error(
+          `No permission to manage thread "${newThread.name}" in channel <#${newThread.parentId}>`,
+          {
+            thread: newThread.name,
+            parent: newThread.parent.name,
+            parentId: newThread.parentId,
+          }
+        );
         return;
       }
 
@@ -65,11 +70,12 @@ module.exports = {
         // This is debug instead of warn because it's quite common to have no tags, it means the bot was triggered by a thread
         // change in a channel that doesn't have the tags enabled on it.
         logger.debug(
-          `Unable to lock thread "${newThread.name}": couldn't find tag name ${process.env.SOLVED_TAG_NAME} in channel #${newThread.parent.name}.`,
+          `Unable to lock thread "${newThread.name}": couldn't find tag name ${process.env.SOLVED_TAG_NAME} in channel <#${newThread.parentId}>.`,
           {
             thread: newThread.name,
             solvedTag: process.env.SOLVED_TAG_NAME,
-            channe: newThread.parent.name,
+            parent: newThread.parent.name,
+            parentId: newThread.parentId,
           }
         );
         return;
@@ -85,9 +91,11 @@ module.exports = {
             newThread.createdTimestamp
           ).toUTCString();
           logger.info(
-            `Not sending closed message to "${newThread.name}" since it was created ${createdDate} which is more than ${process.env.OLD_THREAD_AGE_IN_DAYS} days ago.`,
+            `Not sending closed message to "${newThread.name}" in channel <#${newThread.parentId}> since it was created ${createdDate} which is more than ${process.env.OLD_THREAD_AGE_IN_DAYS} days ago.`,
             {
               thread: newThread.name,
+              parent: newThread.parent.name,
+              parentId: newThread.parentId,
               createdDate,
               oldThreadAge: process.env.OLD_THREAD_AGE_IN_DAYS,
             }
@@ -95,14 +103,24 @@ module.exports = {
         }
 
         await newThread.setLocked(true);
-        logger.debug(`Locked thread "${newThread.name}"`, {
-          thread: newThread.name,
-        });
+        logger.debug(
+          `Locked thread "${newThread.name}" in channel <#${newThread.parentId}>`,
+          {
+            thread: newThread.name,
+            parent: newThread.parent.name,
+            parentId: newThread.parentId,
+          }
+        );
       } else if (wasUnSolved(oldThread, newThread, tagId)) {
         await newThread.setLocked(false);
-        logger.debug(`Unlocked thread "${newThread.name}"`, {
-          thread: newThread.name,
-        });
+        logger.debug(
+          `Unlocked thread "${newThread.name}" in channel <#${newThread.parentId}>`,
+          {
+            thread: newThread.name,
+            parent: newThread.parent.name,
+            parentId: newThread.parentId,
+          }
+        );
 
         // This will only have a value if the cache contains the last message.
         // for the channel.
