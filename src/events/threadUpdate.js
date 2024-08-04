@@ -50,9 +50,10 @@ module.exports = {
     try {
       if (!newThread.manageable) {
         logger.error(
-          `No permission to manage thread "${newThread.name}" in channel <#${newThread.parentId}>`,
+          `No permission to manage thread <#${newThread.id}> in channel <#${newThread.parentId}>`,
           {
             thread: newThread.name,
+            threadId: newThread.id,
             parent: newThread.parent.name,
             parentId: newThread.parentId,
           }
@@ -70,9 +71,10 @@ module.exports = {
         // This is debug instead of warn because it's quite common to have no tags, it means the bot was triggered by a thread
         // change in a channel that doesn't have the tags enabled on it.
         logger.debug(
-          `Unable to lock thread "${newThread.name}": couldn't find tag name ${process.env.SOLVED_TAG_NAME} in channel <#${newThread.parentId}>.`,
+          `Unable to lock thread <#${newThread.id}>: couldn't find tag name ${process.env.SOLVED_TAG_NAME} in channel <#${newThread.parentId}>.`,
           {
             thread: newThread.name,
+            threadId: newThread.id,
             solvedTag: process.env.SOLVED_TAG_NAME,
             parent: newThread.parent.name,
             parentId: newThread.parentId,
@@ -91,9 +93,10 @@ module.exports = {
             newThread.createdTimestamp
           ).toUTCString();
           logger.info(
-            `Not sending closed message to "${newThread.name}" in channel <#${newThread.parentId}> since it was created ${createdDate} which is more than ${process.env.OLD_THREAD_AGE_IN_DAYS} days ago.`,
+            `Not sending closed message to <#${newThread.id}> in channel <#${newThread.parentId}> since it was created ${createdDate} which is more than ${process.env.OLD_THREAD_AGE_IN_DAYS} days ago.`,
             {
               thread: newThread.name,
+              threadId: newThread.id,
               parent: newThread.parent.name,
               parentId: newThread.parentId,
               createdDate,
