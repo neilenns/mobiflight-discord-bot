@@ -21,7 +21,7 @@
   "dependencies": {
     "@logtail/node": "^0.5.0",
     "@logtail/winston": "^0.4.19",
-    "chokidar": "^3.5.3",
+    "chokidar": "^4.0.0",
     "debug": "^4.3.4",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
