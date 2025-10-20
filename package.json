@@ -20,7 +20,7 @@
   "homepage": "https://github.com/neilenns/mobiflight-discord-bot#readme",
   "dependencies": {
     "@logtail/node": "^0.5.0",
-    "@logtail/winston": "^0.4.19",
+    "@logtail/winston": "^0.5.0",
     "chokidar": "^4.0.0",
     "debug": "^4.3.4",
     "discord.js": "^14.14.1",
