@@ -4,7 +4,6 @@ const {
 	StringSelectMenuOptionBuilder,
 	SlashCommandBuilder,
 	DiscordjsError,
-	hyperlink,
 } = require('discord.js');
 const { replyOrEditReply } = require('../../utilities');
 const chokidar = require('chokidar');
@@ -33,12 +32,12 @@ function loadMenuItems() {
 				.setLabel(item.label)
 				.setValue(item.value);
 
-			// Support both old format (description) and new format (content array)
+			// Use description field if present, otherwise generate from first line of content
 			if (item.description) {
 				option.setDescription(item.description);
 			}
 			else if (item.content && item.content.length > 0) {
-				// For new format, use first line of content as description (up to 100 chars)
+				// Generate description from first line of content (up to 100 chars)
 				// Strip markdown formatting: bold, italic, code, links, emojis, etc.
 				let description = item.content[0];
 
@@ -142,20 +141,8 @@ module.exports = {
 				return;
 			}
 
-			// Build the message content based on format
-			let messageContent;
-			if (selectedItem.content) {
-				// New format: use content array
-				messageContent = selectedItem.content.join('\n');
-			}
-			else {
-				// Legacy format: use preamble and href (for backward compatibility)
-				const link = hyperlink(selectedItem.description, selectedItem.href);
-				const preamble =
-          selectedItem.preamble ??
-          'Check out the following link for more information:';
-				messageContent = `${preamble} ${link}`;
-			}
+			// Build the message content from content array
+			const messageContent = selectedItem.content.join('\n');
 
 			await replyOrEditReply(interaction, {
 				content: 'Link sent!',
