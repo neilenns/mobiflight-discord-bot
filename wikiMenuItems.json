@@ -5,7 +5,7 @@
     "value": "honeycombbravo",
     "content": [
       "👉 **Check out this wiki page** for information on using the selector knob with the Honeycomb Bravo:",
-      "[Using the selector knob on a Honeycomb Bravo](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo)"
+      "[Using the selector knob on a Honeycomb Bravo](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo>)"
     ]
   },
   {
@@ -14,7 +14,7 @@
     "value": "multiplexers",
     "content": [
       "👉 **Check out this wiki page** for information on using multiplexers with MobiFlight:",
-      "[Beginner's guide to input multiplexers](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers)"
+      "[Beginner's guide to input multiplexers](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers>)"
     ]
   },
   {
@@ -23,7 +23,7 @@
     "value": "inputshifters",
     "content": [
       "👉 **Check out this wiki page** for information on using input shifters with MobiFlight:",
-      "[Adding lots of buttons with an input shift register](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register)"
+      "[Adding lots of buttons with an input shift register](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register>)"
     ]
   },
   {
@@ -32,7 +32,7 @@
     "value": "outputshifters",
     "content": [
       "👉 **Check out this wiki page** for information on using output shifters with MobiFlight:",
-      "[Controlling LEDs with an output shift register](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register)"
+      "[Controlling LEDs with an output shift register](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register>)"
     ]
   },
   {
@@ -41,7 +41,7 @@
     "value": "logs",
     "content": [
       "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:",
-      "[Providing logs from MobiFlight](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight)"
+      "[Providing logs from MobiFlight](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight>)"
     ]
   },
   {
@@ -50,7 +50,7 @@
     "value": "7segments",
     "content": [
       "👉 **Check out this wiki page** for information on using 7-segment LED modules with MobiFlight:",
-      "[Setting up 7 segment LED modules with SimConnect Events](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events)"
+      "[Setting up 7 segment LED modules with SimConnect Events](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events>)"
     ]
   },
   {
@@ -59,7 +59,7 @@
     "value": "ch340",
     "content": [
       "It sounds like your Arduino uses a counterfeit CH340 chip. You can find more information about this problem and how to fix it by visiting this blog post:",
-      "[Arduino Nano and Mega with CH340 chips connection issues](https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/)"
+      "[Arduino Nano and Mega with CH340 chips connection issues](<https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/>)"
     ]
   },
   {
@@ -68,7 +68,7 @@
     "value": "gettingstarted",
     "content": [
       "👉 **Check out this YouTube video** for a good introduction on getting started with MobiFlight:",
-      "[Getting Started 2023 - MobiFlight Tutorial](https://www.youtube.com/watch?v=pS8KGfYRNrY)"
+      "[Getting Started 2023 - MobiFlight Tutorial](<https://www.youtube.com/watch?v=pS8KGfYRNrY>)"
     ]
   }
 ]
