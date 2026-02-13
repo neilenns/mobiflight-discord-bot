@@ -4,6 +4,7 @@ const {
 	StringSelectMenuOptionBuilder,
 	SlashCommandBuilder,
 	DiscordjsError,
+	hyperlink,
 } = require('discord.js');
 const { replyOrEditReply } = require('../../utilities');
 const chokidar = require('chokidar');
@@ -38,7 +39,19 @@ function loadMenuItems() {
 			}
 			else if (item.content && item.content.length > 0) {
 				// For new format, use first line of content as description (up to 100 chars)
-				const description = item.content[0].replace(/[*_~`#]/g, '').substring(0, 100);
+				// Strip markdown formatting: bold, italic, code, links, emojis, etc.
+				let description = item.content[0];
+
+				// Remove markdown links [text](url) -> text
+				description = description.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1');
+
+				// Remove markdown formatting characters
+				description = description.replace(/[*_~`#]/g, '');
+
+				// Remove leading emojis (using common emoji ranges) and whitespace
+				description = description.replace(/^[\u{1F300}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/ug, '');
+
+				description = description.trim().substring(0, 100);
 				option.setDescription(description);
 			}
 
@@ -137,7 +150,6 @@ module.exports = {
 			}
 			else {
 				// Legacy format: use preamble and href (for backward compatibility)
-				const { hyperlink } = require('discord.js');
 				const link = hyperlink(selectedItem.description, selectedItem.href);
 				const preamble =
           selectedItem.preamble ??
