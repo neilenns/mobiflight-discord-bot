@@ -1,58 +1,66 @@
 [
   {
     "label": "Honeycomb Bravo",
-    "description": "Using the selector knob on a Honeycomb Bravo",
     "value": "honeycombbravo",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo",
-    "preamble": "Check out this wiki page for information on using the selector knob with the Honeycomb Bravo:"
+    "content": [
+      "☝️ **Check out this wiki page** for information on using the selector knob with the Honeycomb Bravo:",
+      "[Using the selector knob on a Honeycomb Bravo](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo)"
+    ]
   },
   {
     "label": "Multiplexers",
-    "description": "Beginner's guide to input multiplexers",
     "value": "multiplexers",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers",
-    "preamble": "Check out this wiki page for information on using multiplexers with MobiFlight:"
+    "content": [
+      "☝️ **Check out this wiki page** for information on using multiplexers with MobiFlight:",
+      "[Beginner's guide to input multiplexers](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers)"
+    ]
   },
   {
     "label": "Input shifters",
-    "description": "Adding lots of buttons with an input shift register",
     "value": "inputshifters",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register",
-    "preamble": "Check out this wiki page for information on using input shifters with MobiFlight:"
+    "content": [
+      "☝️ **Check out this wiki page** for information on using input shifters with MobiFlight:",
+      "[Adding lots of buttons with an input shift register](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register)"
+    ]
   },
   {
     "label": "Output shifters",
-    "description": "Controlling LEDs with an output shift register",
     "value": "outputshifters",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register",
-    "preamble": "Check out this wiki page for information on using output shifters with MobiFlight:"
+    "content": [
+      "☝️ **Check out this wiki page** for information on using output shifters with MobiFlight:",
+      "[Controlling LEDs with an output shift register](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register)"
+    ]
   },
   {
     "label": "Logs",
-    "description": "Providing logs from MobiFlight",
     "value": "logs",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight",
-    "preamble": "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:"
+    "content": [
+      "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:",
+      "[Providing logs from MobiFlight](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight)"
+    ]
   },
   {
     "label": "7 Segments",
-    "description": "Setting up 7 segment LED modules with SimConnect Events",
     "value": "7segments",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events",
-    "preamble": "Check out this wiki page for information on using 7-segment LED modules with MobiFlight:"
+    "content": [
+      "☝️ **Check out this wiki page** for information on using 7-segment LED modules with MobiFlight:",
+      "[Setting up 7 segment LED modules with SimConnect Events](https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events)"
+    ]
   },
   {
     "label": "CH340",
-    "description": "Arduino Nano and Mega with CH340 chips connection issues",
     "value": "ch340",
-    "href": "https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/",
-    "preamble": "It sounds like your Arduino uses a counterfeit CH340 chip. You can find more information about this problem and how to fix it by visiting this blog post:"
+    "content": [
+      "It sounds like your Arduino uses a counterfeit CH340 chip. You can find more information about this problem and how to fix it by visiting this blog post:",
+      "[Arduino Nano and Mega with CH340 chips connection issues](https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/)"
+    ]
   },
   {
     "label": "Getting started 2023",
-    "description": "Getting Started 2023 - MobiFlight Tutorial",
     "value": "gettingstarted",
-    "href": "https://www.youtube.com/watch?v=pS8KGfYRNrY",
-    "preamble": "Check out this YouTube video for a good introduction on getting started with MobiFlight:"
+    "content": [
+      "☝️ **Check out this YouTube video** for a good introduction on getting started with MobiFlight:",
+      "[Getting Started 2023 - MobiFlight Tutorial](https://www.youtube.com/watch?v=pS8KGfYRNrY)"
+    ]
   }
 ]
