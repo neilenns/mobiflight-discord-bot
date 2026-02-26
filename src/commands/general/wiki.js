@@ -141,11 +141,12 @@ module.exports = {
       }
 
       // Validate that the selected item has a non-empty content array
-      if (
+      const isEmptyContent =
         !selectedItem.content ||
         !Array.isArray(selectedItem.content) ||
-        selectedItem.content.length === 0
-      ) {
+        selectedItem.content.length === 0;
+
+      if (isEmptyContent) {
         logger.error(
           `Selected wiki item "${topic}" has invalid or empty content`,
           { selectedItem }
@@ -156,6 +157,7 @@ module.exports = {
         });
         return;
       }
+
       // Build the message content from content array
       const messageContent = selectedItem.content.join("\n");
 
