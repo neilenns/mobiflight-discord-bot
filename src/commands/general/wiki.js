@@ -160,7 +160,7 @@ module.exports = {
       const messageContent = selectedItem.content.join("\n");
 
       await replyOrEditReply(interaction, {
-        content: "Link sent!",
+        content: 'Link sent!',
         components: [],
         ephemeral: true,
       });
