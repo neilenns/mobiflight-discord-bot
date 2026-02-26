@@ -37,7 +37,7 @@ function loadEvents() {
   }
 }
 
-function loadCommands() {
+async function loadCommands() {
   try {
     const foldersPath = path.join(__dirname, "commands");
     const commandFolders = fs.readdirSync(foldersPath);
@@ -55,7 +55,7 @@ function loadCommands() {
         // Initialize the command if it has an initializer
         if ("init" in command) {
           logger.debug(`Initializing ${filePath}`, { file: filePath });
-          command.init();
+          await command.init();
         }
 
         // Set a new item in the Collection with the key as the command name and the value as the exported module
@@ -75,7 +75,9 @@ function loadCommands() {
 }
 
 if (process.env.ENABLE_COMMANDS === "true") {
-  loadCommands();
+  loadCommands().catch((err) => {
+    logger.error(`Failed to load commands: ${err.message}`, err);
+  });
 } else {
   logger.info(`Commands disabled, skipping creating them.`);
 }

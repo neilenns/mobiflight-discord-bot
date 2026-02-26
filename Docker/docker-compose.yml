@@ -1,18 +1,24 @@
-version: '3.8'
+version: "3.8"
 
 name: mobiflight-discord
 
 services:
   bot:
-    image: ghcr.io/neilenns/mobiflight-discord-bot:latest
-    restart: always      
+    image: ghcr.io/mobiflight/mobiflight-discord-bot:latest
+    restart: always
+    env_file:
+      - .env.prod
     environment:
-     - DISCORD_TOKEN=x # Application token
-     - DISCORD_CLIENT_ID=x # Application ID
-     - DISCORD_GUILD_ID=x # Server ID
-     - SOLVED_TAG_NAME=Solved
-     - ENABLE_COMMANDS=true
-     - WIKI_ITEMS_PATH=/config/wikiMenuItems.json
-     - YT_ITEMS_PATH=/config/ytMenuItems.json
+      - DISCORD_TOKEN=${DISCORD_TOKEN-}
+      - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID-}
+      # Mobiflight server
+      - DISCORD_GUILD_ID=${DISCORD_GUILD_ID-}
+      - SOLVED_TAG_NAME=${SOLVED_TAG:-Solved}
+      - ENABLE_COMMANDS=${ENABLE_COMMANDS:-true}
+      - WIKI_ITEMS_PATH=${WIKI_ITEMS_PATH:-/config/wikiMenuItems.json}
+      - OLD_THREAD_AGE_IN_DAYS=${OLD_THREAD_AGE_IN_DAYS:-360}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOGTAIL_TOKEN=${LOGTAIL_TOKEN-}
+      - BOT_LOG_WEBHOOK=${BOT_LOG_WEBHOOK-}
     volumes:
-     - ./config:/config
+      - ./config:/config

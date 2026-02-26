@@ -3,56 +3,168 @@
     "label": "Honeycomb Bravo",
     "description": "Using the selector knob on a Honeycomb Bravo",
     "value": "honeycombbravo",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo",
-    "preamble": "Check out this wiki page for information on using the selector knob with the Honeycomb Bravo:"
+    "content": [
+      "👉 **Check out this wiki page** for information on using the selector knob with the Honeycomb Bravo:",
+      "[Using the selector knob on a Honeycomb Bravo](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Using-the-selector-knob-on-a-Honeycomb-Bravo>)"
+    ]
   },
   {
     "label": "Multiplexers",
     "description": "Beginner's guide to input multiplexers",
     "value": "multiplexers",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers",
-    "preamble": "Check out this wiki page for information on using multiplexers with MobiFlight:"
+    "content": [
+      "👉 **Check out this wiki page** for information on using multiplexers with MobiFlight:",
+      "[Beginner's guide to input multiplexers](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Beginner%27s-guide-to-input-multiplexers>)"
+    ]
   },
   {
     "label": "Input shifters",
     "description": "Adding lots of buttons with an input shift register",
     "value": "inputshifters",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register",
-    "preamble": "Check out this wiki page for information on using input shifters with MobiFlight:"
+    "content": [
+      "👉 **Check out this wiki page** for information on using input shifters with MobiFlight:",
+      "[Adding lots of buttons with an input shift register](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Adding-lots-of-buttons-with-an-input-shift-register>)"
+    ]
   },
   {
     "label": "Output shifters",
     "description": "Controlling LEDs with an output shift register",
     "value": "outputshifters",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register",
-    "preamble": "Check out this wiki page for information on using output shifters with MobiFlight:"
+    "content": [
+      "👉 **Check out this wiki page** for information on using output shifters with MobiFlight:",
+      "[Controlling LEDs with an output shift register](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Controlling-LEDs-with-an-output-shift-register>)"
+    ]
   },
   {
     "label": "Logs",
     "description": "Providing logs from MobiFlight",
     "value": "logs",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight",
-    "preamble": "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:"
+    "content": [
+      "To help diagnose your problem we need to see your MobiFlight logs. Follow the steps in this wiki to get them:",
+      "[Providing logs from MobiFlight](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Providing-logs-from-MobiFlight>)"
+    ]
   },
   {
     "label": "7 Segments",
     "description": "Setting up 7 segment LED modules with SimConnect Events",
     "value": "7segments",
-    "href": "https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events",
-    "preamble": "Check out this wiki page for information on using 7-segment LED modules with MobiFlight:"
+    "content": [
+      "👉 **Check out this wiki page** for information on using 7-segment LED modules with MobiFlight:",
+      "[Setting up 7 segment LED modules with SimConnect Events](<https://github.com/MobiFlight/MobiFlight-Connector/wiki/Tutorial-Setting-up-7-segment-LED-modules-with-SimConnect-Events>)"
+    ]
   },
   {
     "label": "CH340",
     "description": "Arduino Nano and Mega with CH340 chips connection issues",
     "value": "ch340",
-    "href": "https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/",
-    "preamble": "It sounds like your Arduino uses a counterfeit CH340 chip. You can find more information about this problem and how to fix it by visiting this blog post:"
+    "content": [
+      "It sounds like your Arduino uses a counterfeit CH340 chip. You can find more information about this problem and how to fix it by visiting this blog post:",
+      "[Arduino Nano and Mega with CH340 chips connection issues](<https://www.badcasserole.com/arduino-nano-with-ch340-chips-connection-issues/>)"
+    ]
   },
   {
     "label": "Getting started 2023",
     "description": "Getting Started 2023 - MobiFlight Tutorial",
     "value": "gettingstarted",
-    "href": "https://www.youtube.com/watch?v=pS8KGfYRNrY",
-    "preamble": "Check out this YouTube video for a good introduction on getting started with MobiFlight:"
+    "content": [
+      "👉 **Check out this YouTube video** for a good introduction on getting started with MobiFlight:",
+      "[Getting Started 2023 - MobiFlight Tutorial](<https://www.youtube.com/watch?v=pS8KGfYRNrY>)"
+    ]
+  },
+  {
+    "label": "Using potentiometers with MobiFlight",
+    "description": "Using potentiometers with MobiFlight",
+    "value": "pots",
+    "content": [
+      "👉 **Check out the documentation** for a step-by-step guide to using potentiometers with MobiFlight:",
+      "[Using potentiometers with MobiFlight](<https://docs.mobiflight.com/devices/potentiometer/>)"
+    ]
+  },
+  {
+    "label": "Finding input events (2020)",
+    "description": "Uncovering input events using the MSFS2020 behavior dialog",
+    "value": "inputevents",
+    "content": [
+      "You can use the developer tools in MSFS2020 to find the code for the input events.",
+      "See this blog post for details on how to do it:",
+      "[Uncovering input events using the MSFS2020 model behavior dialog](<https://www.badcasserole.com/uncovering-input-events-using-the-msfs2020-model-behavior-dialog/>)"
+    ]
+  },
+  {
+    "label": "Finding input events (2024)",
+    "description": "Finding input events in Microsoft Flight Simulator 2024",
+    "value": "inputevents2024",
+    "content": [
+      "👉 **Check out the documentation** for a step-by-step guide to finding input events in Microsoft Flight Simulator 2024:",
+      "[Finding input events in Microsoft Flight Simulator 2024](<https://docs.mobiflight.com/guides/input-events-2024/>)"
+    ]
+  },
+  {
+    "label": "Using three-position switches with MobiFlight",
+    "description": "Using three-position switches with MobiFlight",
+    "value": "threeposition",
+    "content": [
+      "👉 **Check out the documentation** for a step-by-step guide to using three-position switches with MobiFlight:",
+      "[Using three-position switches with MobiFlight](<https://docs.mobiflight.com/devices/button-switch/>)"
+    ]
+  },
+  {
+    "label": "Verifying the WASM module",
+    "description": "Verifying the WASM module installation",
+    "value": "wasm",
+    "content": [
+      "👉 **Check out the documentation** for a step-by-step guide to resolving WASM installation issues:",
+      "[Verifying the WASM module](<https://docs.mobiflight.com/guides/wasm-module/>)"
+    ]
+  },
+  {
+    "label": "Using WINWING devices with MobiFlight",
+    "description": "Using WINWING devices with MobiFlight",
+    "value": "ww",
+    "content": [
+      "👉 **Check out the documentation** for information on using your WINWING device with MobiFlight:",
+      "[Using WINWING devices with MobiFlight](<https://docs.mobiflight.com/game-controllers/winwing/>)"
+    ]
+  },
+  {
+    "label": "Using the WINWING PFP 3N with MobiFlight",
+    "description": "Using the WINWING PFP 3N with MobiFlight",
+    "value": "cdu",
+    "content": [
+      "👉 **Follow the step-by-step guide** to set up your PFP 3N with MobiFlight:",
+      "[Using the WINWING PFP 3N with MobiFlight](<https://docs.mobiflight.com/game-controllers/winwing/winwing-cdu>)"
+    ]
+  },
+  {
+    "label": "Solving flashing errors",
+    "description": "Solving flashing errors",
+    "value": "flashing",
+    "content": [
+      "👉 **See the following guide** to troubleshoot ⚡flashing errors:",
+      "[Solving flashing errors](<https://docs.mobiflight.com/guides/solving-flashing-errors/>)"
+    ]
+  },
+  {
+    "label": "Taking screenshots",
+    "description": "Taking screenshots using the Windows snipping tool",
+    "value": "screenshots",
+    "content": [
+      "👉 **To take a screenshot**, you can use the ✂️ **Windows snipping tool**.",
+      "",
+      "**Here's how:**",
+      "* `Win` + `Shift` + `S` to open the snipping tool, then select the area you want to capture.",
+      "* The screenshot will be copied to your clipboard, and you can paste it into your message with `Ctrl` + `V`.",
+      "",
+      "🔍 Check out the full tutorial for [Taking screenshots](<https://docs.mobiflight.com/guides/taking-screenshots/>)"
+    ]
+  },
+  {
+    "label": "MobiFlight Installation Path",
+    "description": "Finding the MobiFlight installation",
+    "value": "installpath",
+    "content": [
+      "👉 **MobiFlight installs to** 📂`%LocalAppData%\\MobiFlight\\MobiFlight Connector`",
+      "[MobiFlight Installation Path](<https://docs.mobiflight.com/guides/installation-path/>)"
+    ]
   }
 ]

@@ -4,11 +4,8 @@ const {
   StringSelectMenuOptionBuilder,
   SlashCommandBuilder,
   DiscordjsError,
-  hyperlink,
-  hideLinkEmbed,
 } = require("discord.js");
 const { replyOrEditReply } = require("../../utilities");
-const chokidar = require("chokidar");
 const fs = require("fs");
 
 const mainLogger = require("../../logger");
@@ -16,6 +13,22 @@ const logger = mainLogger.child({ service: "wiki" });
 
 let selectMenu;
 let menuItems;
+
+// Creates a description from the first line of content by stripping markdown formatting
+function createDescription(contentFirstLine) {
+  let description = contentFirstLine;
+
+  // Remove markdown links [text](url) -> text
+  description = description.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+
+  // Remove markdown formatting characters
+  description = description.replace(/[*_~`#]/g, "");
+
+  // Remove leading emojis (using common emoji ranges) and whitespace
+  description = description.replace(/^[\u{1F300}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/ug, "");
+
+  return description.trim().substring(0, 100);
+}
 
 function loadMenuItems() {
   logger.debug(`Loading menu items from ${process.env.WIKI_ITEMS_PATH}`);
@@ -30,12 +43,18 @@ function loadMenuItems() {
       .setPlaceholder("Select a wiki topic");
 
     menuItems.forEach((item) => {
-      selectMenu.addOptions(
-        new StringSelectMenuOptionBuilder()
-          .setLabel(item.label)
-          .setDescription(item.description)
-          .setValue(item.value)
-      );
+      const option = new StringSelectMenuOptionBuilder()
+        .setLabel(item.label)
+        .setValue(item.value);
+
+      // Use description field if present, otherwise generate from first line of content
+      if (item.description) {
+        option.setDescription(item.description);
+      } else if (item.content && item.content.length > 0) {
+        option.setDescription(createDescription(item.content[0]));
+      }
+
+      selectMenu.addOptions(option);
     });
   } catch (err) {
     logger.error(
@@ -45,9 +64,10 @@ function loadMenuItems() {
   }
 }
 
-function watchForMenuChanges() {
+async function watchForMenuChanges() {
   // Start watching for file changes
   try {
+    const chokidar = (await import("chokidar")).default;
     chokidar
       .watch(process.env.WIKI_ITEMS_PATH, {
         awaitWriteFinish: true,
@@ -85,9 +105,9 @@ async function promptForTopic(interaction) {
 }
 
 module.exports = {
-  init: () => {
+  init: async () => {
     loadMenuItems();
-    watchForMenuChanges();
+    await watchForMenuChanges();
   },
   cooldown: 5,
   data: new SlashCommandBuilder()
@@ -120,19 +140,35 @@ module.exports = {
         return;
       }
 
-      const link = hyperlink(selectedItem.description, selectedItem.href);
-      const preamble =
-        selectedItem.preamble ??
-        "Check out the following link for more information:";
+      // Validate that the selected item has a non-empty content array
+      const isEmptyContent =
+        !selectedItem.content ||
+        !Array.isArray(selectedItem.content) ||
+        selectedItem.content.length === 0;
+
+      if (isEmptyContent) {
+        logger.error(
+          `Selected wiki item "${topic}" has invalid or empty content`,
+          { selectedItem }
+        );
+        await replyOrEditReply(interaction, {
+          content: `No wiki content available for ${topic}`,
+          ephemeral: true,
+        });
+        return;
+      }
+
+      // Build the message content from content array
+      const messageContent = selectedItem.content.join("\n");
 
       await replyOrEditReply(interaction, {
-        content: `Link sent!`,
+        content: 'Link sent!',
         components: [],
         ephemeral: true,
       });
 
       await interaction.channel.send({
-        content: `${preamble} ${link}`,
+        content: messageContent,
       });
     } catch (error) {
       // Errors from the user not responding to the dropdown in time don't log,
