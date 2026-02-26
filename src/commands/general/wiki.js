@@ -140,6 +140,22 @@ module.exports = {
         return;
       }
 
+      // Validate that the selected item has a non-empty content array
+      if (
+        !selectedItem.content ||
+        !Array.isArray(selectedItem.content) ||
+        selectedItem.content.length === 0
+      ) {
+        logger.error(
+          `Selected wiki item "${topic}" has invalid or empty content`,
+          { selectedItem }
+        );
+        await replyOrEditReply(interaction, {
+          content: `No wiki content available for ${topic}`,
+          ephemeral: true,
+        });
+        return;
+      }
       // Build the message content from content array
       const messageContent = selectedItem.content.join("\n");
 
