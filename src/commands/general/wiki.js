@@ -6,7 +6,6 @@ const {
   DiscordjsError,
 } = require("discord.js");
 const { replyOrEditReply } = require("../../utilities");
-const chokidar = require("chokidar");
 const fs = require("fs");
 
 const mainLogger = require("../../logger");
@@ -65,9 +64,10 @@ function loadMenuItems() {
   }
 }
 
-function watchForMenuChanges() {
+async function watchForMenuChanges() {
   // Start watching for file changes
   try {
+    const chokidar = (await import("chokidar")).default;
     chokidar
       .watch(process.env.WIKI_ITEMS_PATH, {
         awaitWriteFinish: true,
@@ -105,9 +105,9 @@ async function promptForTopic(interaction) {
 }
 
 module.exports = {
-  init: () => {
+  init: async () => {
     loadMenuItems();
-    watchForMenuChanges();
+    await watchForMenuChanges();
   },
   cooldown: 5,
   data: new SlashCommandBuilder()
