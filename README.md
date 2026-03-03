@@ -22,8 +22,9 @@ The following environment variables must be set for the bot to work properly:
 | DISCORD_GUILD_ID       | The [ID of the server](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-) the slash commands should be registered with. |
 | DISCORD_TOKEN          | The public key for the bot from the [Discord Developer Portal](https://discord.com/developers/applications/).                                                             |
 | ENABLE_COMMANDS        | Enables registering the slash commands. Should probably always be set to `true`.                                                                                          |
-| OLD_THREAD_AGE_IN_DAYS | Threads older than this value will not get a closing message sent by the bot when the thread is marked solved.                                                            |
-| SOLVED_TAG_NAME        | The name of the tag that indicates a thread is solved. Case insensitive.                                                                                                  |
+| OLD_THREAD_AGE_IN_DAYS    | Threads older than this value will not get a closing message sent by the bot when the thread is marked solved.                                                            |
+| SOLVED_TAG_NAME           | The name of the tag that indicates a thread is solved. Case insensitive.                                                                                                  |
+| STALE_THREAD_AGE_IN_DAYS  | Threads with no activity for this many days will be automatically locked with an inactivity notice. Defaults to `30`.                                                     |
 | WIKI_ITEMS_PATH        | Path to the JSON file with the `/wiki` command menu items.                                                                                                                |
 | YT_ITEMS_PATH          | Path to the JSON file with the `/yt` command menu items.                                                                                                                  |
 
