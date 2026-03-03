@@ -25,6 +25,7 @@ The following environment variables must be set for the bot to work properly:
 | OLD_THREAD_AGE_IN_DAYS    | Threads older than this value will not get a closing message sent by the bot when the thread is marked solved.                                                            |
 | SOLVED_TAG_NAME           | The name of the tag that indicates a thread is solved. Case insensitive.                                                                                                  |
 | STALE_THREAD_AGE_IN_DAYS  | Threads with no activity for this many days will be automatically locked with an inactivity notice. Defaults to `30`.                                                     |
+| LOCK_STALE_THREADS        | Set to `true` to actually lock stale threads. When `false` (the default), stale threads are only logged without being locked.                                             |
 | WIKI_ITEMS_PATH        | Path to the JSON file with the `/wiki` command menu items.                                                                                                                |
 | YT_ITEMS_PATH          | Path to the JSON file with the `/yt` command menu items.                                                                                                                  |
 

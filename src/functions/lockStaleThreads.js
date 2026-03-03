@@ -5,6 +5,7 @@ const STALE_THREAD_AGE_IN_DAYS = parseInt(
   process.env.STALE_THREAD_AGE_IN_DAYS ?? "30"
 );
 const STALE_THREAD_AGE_IN_MS = STALE_THREAD_AGE_IN_DAYS * 24 * 60 * 60 * 1000;
+const LOCK_STALE_THREADS = process.env.LOCK_STALE_THREADS === "true";
 
 // Extracts a Unix timestamp (ms) from a Discord snowflake ID.
 function snowflakeToTimestamp(snowflake) {
@@ -53,19 +54,31 @@ async function lockStaleThreads(client) {
           }
 
           if (isStaleThread(thread)) {
-            await thread.send(
-              `This thread has been inactive for ${STALE_THREAD_AGE_IN_DAYS} days and has been locked. If you have further questions or need additional help, please start a new thread.`
-            );
-            await thread.setLocked(true);
-            logger.info(
-              `Locked stale thread "${thread.name}" in guild "${guild.name}"`,
-              {
-                thread: thread.name,
-                threadId: thread.id,
-                guild: guild.name,
-                guildId: guild.id,
-              }
-            );
+            if (LOCK_STALE_THREADS) {
+              await thread.send(
+                `This thread has been inactive for ${STALE_THREAD_AGE_IN_DAYS} days and has been locked. If you have further questions or need additional help, please start a new thread.`
+              );
+              await thread.setLocked(true);
+              logger.info(
+                `Locked stale thread "${thread.name}" in guild "${guild.name}"`,
+                {
+                  thread: thread.name,
+                  threadId: thread.id,
+                  guild: guild.name,
+                  guildId: guild.id,
+                }
+              );
+            } else {
+              logger.info(
+                `Found stale thread "${thread.name}" in guild "${guild.name}" (locking disabled)`,
+                {
+                  thread: thread.name,
+                  threadId: thread.id,
+                  guild: guild.name,
+                  guildId: guild.id,
+                }
+              );
+            }
           }
         } catch (threadError) {
           logger.error(
