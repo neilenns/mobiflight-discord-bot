@@ -26,6 +26,8 @@ The following environment variables must be set for the bot to work properly:
 | SOLVED_TAG_NAME           | The name of the tag that indicates a thread is solved. Case insensitive.                                                                                                  |
 | STALE_THREAD_AGE_IN_DAYS  | Threads with no activity for this many days will be automatically locked with an inactivity notice. Defaults to `30`.                                                     |
 | LOCK_STALE_THREADS        | Set to `true` to actually lock stale threads. When `false` (the default), stale threads are only logged without being locked.                                             |
+| EXCLUDED_THREAD_IDS       | Comma-separated list of thread IDs that should never be auto-locked by the stale-thread sweep.                                                                            |
+| EXCLUDED_CHANNEL_IDS      | Comma-separated list of channel IDs whose threads should never be auto-locked by the stale-thread sweep.                                                                  |
 | WIKI_ITEMS_PATH        | Path to the JSON file with the `/wiki` command menu items.                                                                                                                |
 | YT_ITEMS_PATH          | Path to the JSON file with the `/yt` command menu items.                                                                                                                  |
 
