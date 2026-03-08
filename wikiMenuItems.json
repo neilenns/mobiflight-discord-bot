@@ -166,5 +166,19 @@
       "👉 **MobiFlight installs to** 📂`%LocalAppData%\\MobiFlight\\MobiFlight Connector`",
       "[MobiFlight Installation Path](<https://docs.mobiflight.com/guides/installation-path/>)"
     ]
+  },
+  {
+    "label": "Try out a GitHub PR Build",
+    "description": "Try out a GitHub Pull Request Build",
+    "value": "prbuild",
+    "content": [
+      "👉 **Try out a GitHub Pull Request Build** to see if this version resolves your issue.",
+      "* **Download the latest zip-file** from the Pull Request (PR) on Github - scroll all the way down to find the latest version.",
+      "* **Extract the downloaded zip-file** to a temporary folder.",
+      "* **Extract the zip-file** inside the temporary folder. A new sub-folder will be present.",
+      "* **Run the `MFConnector.exe`** inside the sub-folder.",
+      "",
+      "Let us know if your issue is resolved with this version! 🙏 **Thank You!**"
+    ]
   }
 ]
