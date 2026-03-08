@@ -56,7 +56,7 @@ module.exports = {
             threadId: newThread.id,
             parent: newThread.parent.name,
             parentId: newThread.parentId,
-          }
+          },
         );
         return;
       }
@@ -64,7 +64,7 @@ module.exports = {
       // Get the tagId for "Solved" from the parent channel
       const tagId = findTagIdByName(
         newThread.parent,
-        process.env.SOLVED_TAG_NAME
+        process.env.SOLVED_TAG_NAME,
       );
 
       if (tagId === undefined) {
@@ -78,7 +78,7 @@ module.exports = {
             solvedTag: process.env.SOLVED_TAG_NAME,
             parent: newThread.parent.name,
             parentId: newThread.parentId,
-          }
+          },
         );
         return;
       }
@@ -86,11 +86,11 @@ module.exports = {
       if (wasSolved(oldThread, newThread, tagId)) {
         if (!isOldThread(newThread)) {
           await newThread.send(
-            `Since this is :white_check_mark: resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!\n\n:pray: Got the help you needed? [A small donation](<https://mobiflight.com/donate/discord>) fuels the ongoing development of :mobiflight: MobiFlight!`
+            `Since this is :white_check_mark: resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!\n\n:pray: Got the help you needed? [A small donation](<https://mobiflight.com/donate/discord>) fuels the ongoing development of <:mobiflight:1027520369080414250> MobiFlight!`,
           );
         } else {
           const createdDate = new Date(
-            newThread.createdTimestamp
+            newThread.createdTimestamp,
           ).toUTCString();
           logger.info(
             `Not sending closed message to <#${newThread.id}> in channel <#${newThread.parentId}> since it was created ${createdDate} which is more than ${process.env.OLD_THREAD_AGE_IN_DAYS} days ago.`,
@@ -101,7 +101,7 @@ module.exports = {
               parentId: newThread.parentId,
               createdDate,
               oldThreadAge: process.env.OLD_THREAD_AGE_IN_DAYS,
-            }
+            },
           );
         }
 
@@ -112,7 +112,7 @@ module.exports = {
             thread: newThread.name,
             parent: newThread.parent.name,
             parentId: newThread.parentId,
-          }
+          },
         );
       } else if (wasUnSolved(oldThread, newThread, tagId)) {
         await newThread.setLocked(false);
@@ -122,7 +122,7 @@ module.exports = {
             thread: newThread.name,
             parent: newThread.parent.name,
             parentId: newThread.parentId,
-          }
+          },
         );
 
         // This will only have a value if the cache contains the last message.
@@ -131,7 +131,7 @@ module.exports = {
         if (lastMessage?.author.bot) {
           await newThread.lastMessage.delete();
           logger.debug(
-            `Deleted the last message from the thread since it came from the bot`
+            `Deleted the last message from the thread since it came from the bot`,
           );
         }
       }
