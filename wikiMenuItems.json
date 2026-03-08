@@ -173,7 +173,7 @@
     "value": "prbuild",
     "content": [
       "👉 **Try out a GitHub Pull Request Build** to see if this version resolves your issue.",
-      "* **Download the latest zip-file** from the [Pull Request (PR) on GitHub](https://github.com/MobiFlight/MobiFlight-Connector/pulls) - scroll all the way down to find the latest version.",
+      "* **Download the latest zip-file** from the [Pull Request (PR) on GitHub](<https://github.com/MobiFlight/MobiFlight-Connector/pulls>) - scroll all the way down to find the latest version.",
       "* **Extract the downloaded zip-file** to a temporary folder.",
       "* **Extract the zip-file** inside the temporary folder. A new sub-folder will be present.",
       "* **Run the `MFConnector.exe`** inside the sub-folder.",
