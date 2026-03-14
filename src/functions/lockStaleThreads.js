@@ -34,7 +34,7 @@ function isStaleThread(thread) {
 // Checks all active threads in all guilds and locks any that have been inactive
 // for longer than STALE_THREAD_AGE_IN_DAYS.
 async function lockStaleThreads(client) {
-	logger.info('Checking for stale threads...');
+	logger.debug('Checking for stale threads...');
 
 	for (const [, guild] of client.guilds.cache) {
 		try {
@@ -131,7 +131,7 @@ async function lockStaleThreads(client) {
 		}
 	}
 
-	logger.info('Finished checking for stale threads.');
+	logger.debug('Finished checking for stale threads.');
 }
 
 module.exports = { lockStaleThreads };
