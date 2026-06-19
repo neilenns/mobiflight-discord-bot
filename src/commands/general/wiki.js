@@ -25,7 +25,10 @@ function createDescription(contentFirstLine) {
   description = description.replace(/[*_~`#]/g, "");
 
   // Remove leading emojis (using common emoji ranges) and whitespace
-  description = description.replace(/^[\u{1F300}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/ug, "");
+  description = description.replace(
+    /^[\u{1F300}-\u{1F64F}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu,
+    "",
+  );
 
   return description.trim().substring(0, 100);
 }
@@ -34,7 +37,7 @@ function loadMenuItems() {
   logger.debug(`Loading menu items from ${process.env.WIKI_ITEMS_PATH}`);
   try {
     menuItems = JSON.parse(
-      fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8")
+      fs.readFileSync(process.env.WIKI_ITEMS_PATH, "utf8"),
     );
 
     // Build the menu
@@ -44,7 +47,7 @@ function loadMenuItems() {
 
     menuItems.forEach((item) => {
       const option = new StringSelectMenuOptionBuilder()
-        .setLabel(item.label)
+        .setLabel(`${item.label} (${item.value})`)
         .setValue(item.value);
 
       // Use description field if present, otherwise generate from first line of content
@@ -59,7 +62,7 @@ function loadMenuItems() {
   } catch (err) {
     logger.error(
       `Failed to load wiki menu items from ${process.env.WIKI_ITEMS_PATH}: ${err.message}`,
-      err
+      err,
     );
   }
 }
@@ -76,7 +79,7 @@ async function watchForMenuChanges() {
     logger.debug(`Watching for changes in ${process.env.WIKI_ITEMS_PATH}`);
   } catch (e) {
     logger.error(
-      `Unable to watch for changes to ${process.env.WIKI_ITEMS_PATH}: ${e}`
+      `Unable to watch for changes to ${process.env.WIKI_ITEMS_PATH}: ${e}`,
     );
   }
 }
@@ -117,7 +120,7 @@ module.exports = {
       option
         .setName("topic")
         .setDescription("The name of the wiki topic to send")
-        .setRequired(false)
+        .setRequired(false),
     ),
   async execute(interaction) {
     try {
@@ -149,7 +152,7 @@ module.exports = {
       if (isEmptyContent) {
         logger.error(
           `Selected wiki item "${topic}" has invalid or empty content`,
-          { selectedItem }
+          { selectedItem },
         );
         await replyOrEditReply(interaction, {
           content: `No wiki content available for ${topic}`,
@@ -162,7 +165,7 @@ module.exports = {
       const messageContent = selectedItem.content.join("\n");
 
       await replyOrEditReply(interaction, {
-        content: 'Link sent!',
+        content: "Link sent!",
         components: [],
         ephemeral: true,
       });
