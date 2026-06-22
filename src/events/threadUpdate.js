@@ -86,7 +86,7 @@ module.exports = {
       if (wasSolved(oldThread, newThread, tagId)) {
         if (!isOldThread(newThread)) {
           await newThread.send(
-            `Since this is :white_check_mark: resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!\n\n:pray: Got the help you needed? [A small donation](<https://mobiflight.com/donate/discord>) fuels the ongoing development of <:mobiflight:1027520369080414250> MobiFlight!`,
+            `Since this is :white_check_mark: resolved I'm locking the thread. For additional questions or similar issues please start a new thread in <#${newThread.parentId}>. Happy flying!\n\n:pray: Got the help you needed? Join the [MobiFlight club](<https://mobiflight.com/club/>) or make [a small one-time donation](<https://mobiflight.com/donate/discord>) to help fuel the ongoing development of <:mobiflight:1027520369080414250> MobiFlight!`,
           );
         } else {
           const createdDate = new Date(
